@@ -10,20 +10,16 @@ require('chai').should();
 
 var cardRanking = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'J', 'Q', 'K'];
 var giveMeTheWinner = function(pack1, pack2) {
-  var player1CardRank = cardRanking.indexOf(pack1[0]);
-  var player2CardRank = cardRanking.indexOf(pack2[0]);
-  var player1CardRank2 = cardRanking.indexOf(pack1[1]);
-  var player2CardRank2 = cardRanking.indexOf(pack2[1]);
+
   var scorePlayer1 = 0, scorePlayer2 = 0;
-  if (player1CardRank > player2CardRank) {
-    ++scorePlayer1;
-  } else if (player1CardRank < player2CardRank) {
-    ++scorePlayer2;
-  }
-  if (player1CardRank2 > player2CardRank2) {
-    ++scorePlayer1;
-  } else if (player1CardRank2 < player2CardRank2) {
-    ++scorePlayer2;
+  for (var i = 0; i < pack1.length; i++) {
+    var player1CardRank = cardRanking.indexOf(pack1[i]);
+    var player2CardRank = cardRanking.indexOf(pack2[i]);
+    if (player1CardRank > player2CardRank) {
+      ++scorePlayer1;
+    } else if (player1CardRank < player2CardRank) {
+      ++scorePlayer2;
+    }
   }
 
   if (scorePlayer1 > scorePlayer2) {
