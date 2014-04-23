@@ -24,7 +24,7 @@ var giveMeTheWinner = function(pack1, pack2) {
 
   if (scorePlayer1 > scorePlayer2) {
     return 'Player 1 wins ' + scorePlayer1 + ' to ' + scorePlayer2;
-  } else if (player1CardRank < player2CardRank) {
+  } else if (scorePlayer1 < scorePlayer2) {
     return 'Player 2 wins ' + scorePlayer2 + ' to ' + scorePlayer1;
   } else {
     return 'No winner';
@@ -44,5 +44,8 @@ describe('Cards', function() {
   });
   it('player 2 wins with 2 cards', function() {
     giveMeTheWinner(['1', '2'], ['4', '5']).should.eql('Player 2 wins 2 to 0');
+  });
+  it('player 2 wins with 2 cards having 1 tie', function() {
+    giveMeTheWinner(['1', '2'], ['4', '2']).should.eql('Player 2 wins 1 to 0');
   });
 });
