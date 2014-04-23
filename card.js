@@ -23,7 +23,7 @@ var giveMeTheWinner = function(pack1, pack2) {
       ++scorePlayer2;
     }
 
-    if (scorePlayer2 > dealsLeft && dealsLeft >= 1) {
+    if (scorePlayer2 > scorePlayer1 + dealsLeft && dealsLeft >= 1) {
       return 'Player 2 wins in ' + deal + ' rounds';
     }
 
@@ -58,5 +58,8 @@ describe('Cards', function() {
   });
   it('player 2 wins with 3 cards without checking all the deals', function() {
     giveMeTheWinner(['1', '2', '3'], ['4', '5', '6']).should.eql('Player 2 wins in 2 rounds');
+  });
+  it('player 1 wins in the last deal in a long game', function() {
+    giveMeTheWinner(['1', '2', '3', '4', '5'], ['4', '5', '1', '2', '3']).should.eql('Player 1 wins 3 to 2');
   });
 });
