@@ -13,6 +13,8 @@ var giveMeTheWinner = function(pack1, pack2) {
 
   var scorePlayer1 = 0, scorePlayer2 = 0;
   for (var i = 0; i < pack1.length; i++) {
+    var deal = i + 1;
+    var dealsLeft = pack1.length - deal;
     var player1CardRank = cardRanking.indexOf(pack1[i]);
     var player2CardRank = cardRanking.indexOf(pack2[i]);
     if (player1CardRank > player2CardRank) {
@@ -20,6 +22,12 @@ var giveMeTheWinner = function(pack1, pack2) {
     } else if (player1CardRank < player2CardRank) {
       ++scorePlayer2;
     }
+
+    if (scorePlayer2 > dealsLeft && dealsLeft >= 1) {
+      return 'Player 2 wins in ' + deal + ' rounds';
+    }
+
+
   }
 
   if (scorePlayer1 > scorePlayer2) {
@@ -47,5 +55,8 @@ describe('Cards', function() {
   });
   it('player 2 wins with 2 cards having 1 tie', function() {
     giveMeTheWinner(['1', '2'], ['4', '2']).should.eql('Player 2 wins 1 to 0');
+  });
+  it('player 2 wins with 3 cards without checking all the deals', function() {
+    giveMeTheWinner(['1', '2', '3'], ['4', '5', '6']).should.eql('Player 2 wins in 2 rounds');
   });
 });
