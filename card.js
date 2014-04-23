@@ -8,8 +8,10 @@
 
 require('chai').should();
 
-var giveMeTheWinner = function() {
-  return '';
+var giveMeTheWinner = function(pack1, pack2) {
+  var winner = pack1[0] > pack2[0] ? 1 : 2;
+
+  return 'Player ' + winner + ' wins 1 to 0';
 };
 
 describe('Cards', function() {
